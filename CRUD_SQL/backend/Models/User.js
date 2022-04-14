@@ -1,4 +1,4 @@
-const db = require('./db')
+const db = require('../services/db')
 // criando a tabela users no banco de dados
 const User = db.sequelize.define('users', {
     name: {
@@ -14,4 +14,4 @@ const User = db.sequelize.define('users', {
 
 // User.sync({force: true})
 
-module.exports = { User }
+module.exports = User
