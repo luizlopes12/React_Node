@@ -7,7 +7,7 @@
     "sequelize": "^6.19.0"
   },
   "scripts": {
-    "dev": "nodemon app.js"
+    "dev": "nodemon src/app.js"
   }
 
 }
