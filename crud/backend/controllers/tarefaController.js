@@ -1,5 +1,6 @@
+// importando model da tabela tarefas
 const Tarefa = require('../models/Tarefa.js')
-
+// classe com as funções crud
 class tarefaController {
 
     static criarTarefa = (req, res) =>{
@@ -59,5 +60,5 @@ class tarefaController {
     }
 }
 
-
+// exportando classe
 module.exports = tarefaController
