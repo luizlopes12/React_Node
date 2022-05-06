@@ -12,7 +12,7 @@ const routes = (app) =>{
     app.use(
         express.json(),
         tarefas
-        )
+    )
 }
 // exportando organizador de rotas
 module.exports = routes
