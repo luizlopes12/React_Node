@@ -11,7 +11,7 @@ routes(app)
 // middlewares (aceitando json e habilitando o cors) 
 app.use(express.json())
 app.use(cors())
-// definindo porta  
+// definindo porta 
 const port = 3001
 // iniciando servidor
 app.listen(port, ()=>{
