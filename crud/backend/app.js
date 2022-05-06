@@ -8,10 +8,10 @@ const routes = require('./routes')
 const app = express()
 // utilizando rotas
 routes(app)
-// middlewares (aceitando json e habilitando o cors) 
+// middlewares (aceitando json e habilitando o cors)
 app.use(express.json())
 app.use(cors())
-// definindo porta 
+// definindo porta
 const port = 3001
 // iniciando servidor
 app.listen(port, ()=>{
