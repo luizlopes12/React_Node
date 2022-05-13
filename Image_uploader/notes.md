@@ -1,7 +1,7 @@
 # Image uploader
 
 ## Etapas
-- [x] Criar uma API que capture a imagem e mande para a API do imgur     
+- [ ] Criar uma API que capture a imagem e mande para a API do imgur     
       (para hospedagem da imagem).
     
 - [ ] Desenvolver o frontend de acordo com o proposto no desafio
