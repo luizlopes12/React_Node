@@ -1,29 +1,44 @@
-const Image = require('../models/Image.js')
+const Image = require("../models/Image.js");
 
 class imagesController {
+  static getImage = (req, res) => {
+      let imageName = req.params.imageName
+      if(imageName){
+          res.status(200).json(imageName)
+      }
+  };
 
-    static getImages = (req, res) =>{
-        Image.findAll()
-        .then((images)=>{
-            res.status(200).json(images)
+  static uploadImage = (req, res) => {
+      console.log(req.file)
+    if (req.file) {
+      // Colocando o nome da imagem no banco de dados
+      Image.create({
+        imageName: req.file.filename,
+      })
+        // Selecionando a ultima imagem que foi adicionada no banco
+        .then(() => {
+          Image.findOne({
+            order: [["createdAt", "DESC"]],
+          })
+            // Retornando o nome da imagem salva no banco
+            .then((result) => {
+              let imageName = result.dataValues.imageName;
+              res
+                .status(200)
+                .json({ message: "Upload realizado com sucesso", imageName });
+            });
         })
-        .catch((err)=>{
-            res.status(500).json(err.message)
-        })
+        .catch(() => {
+          res
+            .status(500)
+            .json({ message: "Não foi possível realizar o upload" });
+        });
+    } else {
+      res
+        .status(400)
+        .json({ message: "Nenhuma imagem encontrada na requisição" });
     }
-
-    static uploadImage = async (req, res) =>{
-        if(req.file){
-            Image.create({
-                
-            })
-            res.status(200).json({message: 'Upload realizado com sucesso'})
-        }
-        else{
-            res.status(500).json({message: 'Não foi possível realizar o upload'})
-        }
-    }
+  };
 }
 
-
-module.exports = imagesController
+module.exports = imagesController;
