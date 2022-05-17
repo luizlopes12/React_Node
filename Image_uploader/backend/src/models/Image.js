@@ -1,7 +1,7 @@
 const db = require('../config/database.js')
 
 const Image = db.connection.define('images',{
-    name: {
+    imageName: {
         type: db.Sequelize.STRING
     }
 })

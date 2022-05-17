@@ -14,6 +14,9 @@ class imagesController {
 
     static uploadImage = async (req, res) =>{
         if(req.file){
+            Image.create({
+                
+            })
             res.status(200).json({message: 'Upload realizado com sucesso'})
         }
         else{
