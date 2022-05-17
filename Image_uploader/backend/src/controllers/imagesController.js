@@ -12,8 +12,13 @@ class imagesController {
         })
     }
 
-    static uploadImage = (req, res) =>{
-        res.status(200).json({message: 'deu bom'})
+    static uploadImage = async (req, res) =>{
+        if(req.file){
+            res.status(200).json({message: 'Upload realizado com sucesso'})
+        }
+        else{
+            res.status(500).json({message: 'Não foi possível realizar o upload'})
+        }
     }
 }
 
