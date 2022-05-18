@@ -1,23 +1,15 @@
 const Image = require("../models/Image.js");
 
 class imagesController {
-  static getImage = (req, res) => {
-      let imageName = req.params.imageName
-      if(imageName){
-          res.status(200).json(imageName)
-      }
-  };
-
-  static uploadImage = (req, res) => {
-      console.log(req.file)
+  static uploadImage = async (req, res) => {
     if (req.file) {
       // Colocando o nome da imagem no banco de dados
-      Image.create({
+      await Image.create({
         imageName: req.file.filename,
       })
         // Selecionando a ultima imagem que foi adicionada no banco
         .then(() => {
-          Image.findOne({
+          await Image.findOne({
             order: [["createdAt", "DESC"]],
           })
             // Retornando o nome da imagem salva no banco
@@ -25,7 +17,7 @@ class imagesController {
               let imageName = result.dataValues.imageName;
               res
                 .status(200)
-                .json({ message: "Upload realizado com sucesso", imageName });
+                .json({ message: "Upload realizado com sucesso", imageUrl: `/files/${imageName}`});
             });
         })
         .catch(() => {

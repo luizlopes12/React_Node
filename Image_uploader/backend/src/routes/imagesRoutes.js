@@ -4,7 +4,6 @@ const upload = require('../middlewares/uploadImage.js')
 const router = express.Router()
 
 router
-    .get('/images/:imageName', imagesController.getImage)
     .post('/', upload.single('image'), imagesController.uploadImage)
 
 
