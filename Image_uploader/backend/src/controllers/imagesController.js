@@ -1,15 +1,15 @@
 const Image = require("../models/Image.js");
 
 class imagesController {
-  static uploadImage = async (req, res) => {
+  static uploadImage = (req, res) => {
     if (req.file) {
       // Colocando o nome da imagem no banco de dados
-      await Image.create({
+      Image.create({
         imageName: req.file.filename,
       })
         // Selecionando a ultima imagem que foi adicionada no banco
         .then(() => {
-          await Image.findOne({
+          Image.findOne({
             order: [["createdAt", "DESC"]],
           })
             // Retornando o nome da imagem salva no banco
