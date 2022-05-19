@@ -60,7 +60,9 @@ const Uploader = () => {
           Choose a File
         </button>
 
-        {url && url}
+        {url && (
+          <a href={url}>Link</a>
+        )}
       </form>
     </Styles>
   );
