@@ -1,7 +1,10 @@
-
+import GlobalStyles from './global/GlobalStyles.js'
 const App = () =>{
   return (
-    <>Uepa</>
+    <>
+    <GlobalStyles/>
+      Uepa
+    </>
   );
 }
 
