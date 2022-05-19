@@ -17,7 +17,7 @@ class imagesController {
               let imageName = result.dataValues.imageName;
               res
                 .status(200)
-                .json({ message: "Upload realizado com sucesso", imageUrl: `/files/${imageName}`});
+                .json({ message: "Upload realizado com sucesso", imageUrl: `http://localhost:3001/files/${imageName}`});
             });
         })
         .catch(() => {

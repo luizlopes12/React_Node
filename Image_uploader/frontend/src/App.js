@@ -1,12 +1,12 @@
-import GlobalStyles from './global/GlobalStyles.js'
-import Uploader from './components/Uploader/index.jsx';
-const App = () =>{
+import GlobalStyles from "./global/GlobalStyles.js";
+import Uploader from "./components/Uploader/index.jsx";
+const App = () => {
   return (
     <>
-    <GlobalStyles/>
-    <Uploader/>
+      <GlobalStyles />
+      <Uploader />
     </>
   );
-}
+};
 
 export default App;
