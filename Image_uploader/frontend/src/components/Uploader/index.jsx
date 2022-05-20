@@ -4,32 +4,35 @@ import Styles from "./styled";
 import dropImage from "../../img/image.svg";
 
 const Uploader = () => {
-  const [image, setImage] = useState();
-  const [url, setUrl] = useState();
-
-  // Pegando arquivo do input
-  const handleFile = (e) => {
-    setImage(e.target.files[0]);
-    formSubmit(e);
-  };
+  const [image, setImage] = useState('');
+  const [url, setUrl] = useState('');
 
   // Fazendo o upload do formulario
   const formSubmit = async (e) => {
     e.preventDefault();
-    // Enviando imagem para o backend
-    await API.post("/", {image})
-      .then(async (response) => {
-        let imageUrl = await response.data.imageUrl;
-        setUrl(imageUrl);
-      })
-      .catch((err) => {
+  // Pegando arquivo do input
+    setImage(await e.target.files[0])
+    console.log('upload da imagem');
+    const formData = new FormData()
+    formData.append('image', image)
+    API.post('/', formData)
+    .then(response=>{
+      console.log(response.data)
+      setImage('')
+    })
+    .catch(err=>{
+      if(err.response){
+        console.log(err.response.data);
+      }else{
         console.log(err.message);
-      });
+      }
+    })
   };
+  console.log(image);
+
   return (
     <Styles>
       <form encType="multipart/form-data">
-
         <p className="title">Upload your image</p>
         <p className="subtitle">File should be jpeg, png...</p>
 
@@ -38,9 +41,8 @@ const Uploader = () => {
           <input
             type="file"
             name="image"
-            datatype="multipart"
             accept="image/*"
-            onChange={handleFile}
+            onChange={formSubmit}
           />
           <img src={dropImage} alt="Imagem de drag and drop" />
           <p>Drag & Drop your image here</p>
@@ -49,20 +51,18 @@ const Uploader = () => {
         <p className="or">or</p>
 
         {/* Botão de upload */}
-        <button className="btn">
+        <button className="btn" type="submit">
           <input
             type="file"
             name="image"
-            datatype="multipart"
             accept="image/*"
-            onChange={handleFile}
+            onChange={formSubmit}
           />
           Choose a File
         </button>
 
-        {url && (
-          <a href={url}>Link</a>
-        )}
+        {image.name}
+        {url}
       </form>
     </Styles>
   );
