@@ -62,7 +62,6 @@ const Uploader = () => {
         </button>
 
         {image.name}
-        {url}
       </form>
     </Styles>
   );
