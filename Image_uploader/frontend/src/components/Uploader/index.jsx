@@ -15,7 +15,7 @@ const Uploader = () => {
     console.log('upload da imagem');
     const formData = new FormData()
     formData.append('image', image)
-    API.post('/', formData)
+    API.post('/upload', formData)
     .then(response=>{
       console.log(response.data)
       setImage('')

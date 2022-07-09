@@ -1,16 +1,22 @@
 const express = require('express')
-const router = require('./routes')
+const multer = require('multer')
 const cors = require('cors')
-const path = require('path')
+const { storage } = require('./multerConfig')
+
+const upload = multer({storage: storage})
+
+
 const app = express()
-const port = 3001
-app.use(express.json())
+
 app.use(cors())
-//Permitindo que o usuario acesse a imagem pela url
-app.use('/files', express.static(path.resolve(__dirname,'../public/images')))
-router(app)
+
+app.use('/files', express.static('uploads'))
+
+app.post('/upload', upload.single('file'), (req, res)=>{
+    return res.json(req.file?.filename)
+})
 
 
-app.listen(port, ()=>{
-    console.log(`Servidor rodando, porta ${port}`)
+app.listen(3001, ()=>{
+    console.log('Servidor rodando, porta 3001')
 })
