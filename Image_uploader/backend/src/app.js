@@ -7,16 +7,11 @@ const upload = multer({storage: storage})
 
 
 const app = express()
-
 app.use(cors())
-
 app.use('/files', express.static('uploads'))
-
 app.post('/upload', upload.single('file'), (req, res)=>{
-    return res.json(req.file?.filename)
+    res.json(req.file?.filename)
 })
-
-
 app.listen(3001, ()=>{
     console.log('Servidor rodando, porta 3001')
 })

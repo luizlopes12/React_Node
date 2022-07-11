@@ -8,27 +8,16 @@ const Uploader = () => {
   const [url, setUrl] = useState('');
 
   // Fazendo o upload do formulario
-  const formSubmit = async (e) => {
+  const formSubmit = (e) => {
     e.preventDefault();
   // Pegando arquivo do input
-    setImage(await e.target.files[0])
-    console.log('upload da imagem');
-    const formData = new FormData()
-    formData.append('image', image)
-    API.post('/upload', formData)
+    setImage(e.target.files[0])
+    API.post('/upload', image)
     .then(response=>{
-      console.log(response.data)
-      setImage('')
-    })
-    .catch(err=>{
-      if(err.response){
-        console.log(err.response.data);
-      }else{
-        console.log(err.message);
-      }
+      setImage(response)
+      console.log(response)
     })
   };
-  console.log(image);
 
   return (
     <Styles>
@@ -61,7 +50,6 @@ const Uploader = () => {
           Choose a File
         </button>
 
-        {image.name}
       </form>
     </Styles>
   );
